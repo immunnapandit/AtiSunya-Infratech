@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 import Logo from './Logo';
 import './Navbar.css';
 
@@ -7,14 +7,12 @@ const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Property', href: '#projects', dropdown: ['Buy Property', 'Rent Property', 'Sell Property'] },
-  { label: 'Pages', href: '#', dropdown: ['Home', 'About', 'Services', 'Contact'] },
+  { label: 'Projects', href: '#projects' },
 ];
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,29 +23,14 @@ function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
-        <Logo light={!scrolled} />
+        <Logo />
 
         <nav className={`navbar__nav ${mobileOpen ? 'navbar__nav--open' : ''}`}>
           {navLinks.map((link) => (
-            <div
-              key={link.label}
-              className="navbar__item"
-              onMouseEnter={() => link.dropdown && setOpenDropdown(link.label)}
-              onMouseLeave={() => link.dropdown && setOpenDropdown(null)}
-            >
+            <div key={link.label} className="navbar__item">
               <a href={link.href} className="navbar__link">
                 {link.label.toUpperCase()}
-                {link.dropdown && <FiChevronDown size={14} />}
               </a>
-              {link.dropdown && openDropdown === link.label && (
-                <div className="navbar__dropdown">
-                  {link.dropdown.map((item) => (
-                    <a key={item} href="#" className="navbar__dropdown-link">
-                      {item}
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
           ))}
         </nav>

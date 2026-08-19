@@ -16,8 +16,10 @@ export const images = {
   // "Start Your Journey" call-to-action banner.
   ctaBanner: '/images/Projects/StartYourJourney.png',
 
-  // --- Still placeholders: replace when the real photos are ready --------
-  whyChooseUs: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=900&h=1200&fit=crop&q=80',
+  // "Why Choose Us" section.
+  whyChooseUs: '/images/WhyChooseUs/whychooseus.jpg',
+
+  // --- Still a placeholder: replace when the real photo is ready ---------
   contact: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&h=1400&fit=crop&q=80',
 };
 

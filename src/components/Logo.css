@@ -1,0 +1,15 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo__image {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+
+.footer__brand .logo__image {
+  height: 64px;
+}

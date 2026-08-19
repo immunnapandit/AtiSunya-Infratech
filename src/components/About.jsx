@@ -5,26 +5,32 @@ function About() {
   return (
     <section id="about" className="section about">
       <div className="container about__grid">
-        <div className="about__label-col">
+        <div className="about__content">
           <span className="eyebrow">About Us</span>
-        </div>
 
-        <div className="about__heading-col">
           <h2 className="section-title about__heading">
-            AtiSunya Infratech is more than a real estate brand
-            it&rsquo;s a commitment to trusted, transparent property
-            deals.
+            AtiSunya Infratech is a real estate company focused on
+            creating meaningful opportunities across the rapidly
+            developing NCR region.
           </h2>
-        </div>
 
-        <div className="about__text-col">
           <p className="about__text">
-            With years of on-ground experience across India&rsquo;s
-            leading residential markets, AtiSunya Infratech connects
-            buyers, sellers and investors with verified properties and
-            end-to-end support from search to registration. Our team
-            handles the paperwork, negotiation and site visits so you
-            can focus on finding the right home.
+            Our approach is built around three fundamental principles
+            &mdash; trust, transparency and thoughtful real-estate
+            solutions.
+          </p>
+          <p className="about__text">
+            We believe property is more than a transaction. It is a
+            decision that influences the way people live, work and
+            build their future. That&rsquo;s why we focus on projects
+            and opportunities that combine location, connectivity,
+            quality, lifestyle and long-term potential.
+          </p>
+          <p className="about__text">
+            With a focus on Noida, Greater Noida, Ghaziabad and
+            surrounding growth corridors, AtiSunya Infratech aims to
+            make the property journey simpler, clearer and more
+            reliable for homeowners, investors and businesses.
           </p>
           <a href="#projects" className="btn btn-dark about__cta">More About Us</a>
         </div>

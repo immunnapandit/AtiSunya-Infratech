@@ -41,7 +41,7 @@ function WhyChooseUs() {
           <div className="why__image">
             <img
               src={images.whyChooseUs}
-              alt="An AtiSunya Infratech property advisor"
+              alt="AtiSunya Infratech advisors reviewing a property plan"
               loading="lazy"
             />
           </div>

@@ -17,7 +17,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer__grid">
         <div className="footer__brand">
-          <Logo light />
+          <Logo />
           <p className="footer__tagline">Stay updated with our latest news and insights.</p>
           <form className="footer__subscribe" onSubmit={handleSubmit}>
             <input
