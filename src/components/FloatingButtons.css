@@ -1,0 +1,35 @@
+.floating-btn {
+  position: fixed;
+  bottom: 26px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  border: none;
+  transition: transform var(--transition), background var(--transition),
+    box-shadow var(--transition);
+}
+
+.floating-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.floating-btn--whatsapp {
+  left: 26px;
+  background: #25D366;
+}
+
+.floating-btn--top {
+  right: 26px;
+  background: var(--color-dark);
+}
+
+.floating-btn--top:hover {
+  background: var(--color-accent);
+}

@@ -1,0 +1,126 @@
+.footer {
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: var(--section-y) 0 var(--space-6);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: var(--space-7);
+}
+
+.footer__brand .logo {
+  color: var(--color-white);
+  margin-bottom: var(--space-5);
+}
+
+.footer__tagline {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-5);
+  max-width: 320px;
+}
+
+.footer__subscribe {
+  display: flex;
+  background: var(--color-cream);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  max-width: 420px;
+}
+
+.footer__subscribe input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-text);
+}
+
+.footer__subscribe input::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.footer__subscribe-btn {
+  padding: 10px 20px;
+  font-size: var(--fs-xs);
+}
+
+.footer__heading {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: var(--space-5);
+}
+
+.footer__col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer__col a {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: var(--fs-sm);
+  transition: color var(--transition);
+}
+
+.footer__col a:hover {
+  color: var(--color-white);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-9);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--fs-xs);
+}
+
+.footer__legal {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.footer__legal a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color var(--transition);
+}
+
+.footer__legal a:hover {
+  color: var(--color-white);
+}
+
+@media (max-width: 900px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 560px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+  .footer__subscribe {
+    flex-direction: column;
+    background: transparent;
+    padding: 0;
+    gap: var(--space-3);
+  }
+  .footer__subscribe input {
+    background: var(--color-cream);
+    border-radius: var(--radius-sm);
+  }
+}

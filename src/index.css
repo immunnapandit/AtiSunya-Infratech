@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* ---- Brand palette -------------------------------------------------- */
+  --color-dark: #2E2723;
+  --color-dark-2: #221C19;
+  --color-cream: #FAF6EF;
+  --color-cream-2: #F2EADD;
+  --color-white: #FFFFFF;
+
+  --color-text: #1E1916;
+  --color-text-muted: #6B615A;
+  --color-text-subtle: #8F857C;
+
+  /* Warm bronze accent — replaces the old blue so every section shares
+     one temperature. Used for prices, arrows, focus rings, small marks. */
+  --color-accent: #A67C4E;
+  --color-accent-dark: #8C6640;
+  --color-accent-soft: #F0E4D3;
+
+  --color-border: #E6DED1;
+  --color-border-strong: #D8CCB9;
+  --color-danger: #C0532F;
+
+  /* ---- Type ----------------------------------------------------------- */
+  --font-heading: 'Jost', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --fs-display: clamp(2.4rem, 5.4vw, 4.2rem);
+  --fs-h2: clamp(1.9rem, 3.2vw, 2.55rem);
+  --fs-h3: 1.25rem;
+  --fs-lead: 1.05rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.94rem;
+  --fs-xs: 0.85rem;
+
+  --lh-tight: 1.18;
+  --lh-heading: 1.25;
+  --lh-body: 1.7;
+
+  /* ---- Spacing scale -------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 56px;
+  --space-9: 72px;
+
+  /* Every section shares this vertical rhythm */
+  --section-y: clamp(72px, 8vw, 108px);
+  --header-gap: var(--space-8);
+  --grid-gap: var(--space-6);
+  --card-padding: var(--space-6);
+
+  /* ---- Radii & shadows ------------------------------------------------ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 2px 8px rgba(35, 28, 24, 0.05);
+  --shadow-md: 0 10px 28px rgba(35, 28, 24, 0.08);
+  --shadow-lg: 0 24px 60px rgba(35, 28, 24, 0.13);
+
+  --container-width: 1240px;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: var(--lh-heading);
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Layout primitives ------------------------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+/* Shared vertical rhythm — every section uses this instead of its own value */
+.section {
+  padding: var(--section-y) 0;
+}
+
+.section-header {
+  margin-bottom: var(--header-gap);
+}
+
+.section-header--center {
+  text-align: center;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-size: var(--fs-h2);
+}
+
+.section-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--fs-lead);
+  margin-top: var(--space-3);
+}
+
+/* ---- Buttons ---------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+  transition: background var(--transition), color var(--transition),
+    transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-cream {
+  background: var(--color-cream);
+  color: var(--color-text);
+}
+.btn-cream:hover {
+  background: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--color-white);
+}
+
+.btn-dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+.btn-dark:hover {
+  background: var(--color-dark-2);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+.btn-accent:hover {
+  background: var(--color-accent-dark);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- Eyebrow ---------------------------------------------------------- */
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.eyebrow-light {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+}
