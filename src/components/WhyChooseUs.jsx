@@ -1,6 +1,7 @@
 import { FiUser, FiHome, FiHeadphones } from 'react-icons/fi';
 import { FaHandshake } from 'react-icons/fa';
 import { images } from '../data/images';
+import { useReveal } from '../hooks/useReveal';
 import './WhyChooseUs.css';
 
 const features = [
@@ -27,10 +28,17 @@ const features = [
 ];
 
 function WhyChooseUs() {
+  const [headerRef, headerVisible] = useReveal();
+  const [imageRef, imageVisible] = useReveal();
+  const [cardsRef, cardsVisible] = useReveal({ threshold: 0.05 });
+
   return (
     <section className="section why">
       <div className="container">
-        <div className="section-header section-header--center">
+        <div
+          ref={headerRef}
+          className={`section-header section-header--center reveal ${headerVisible ? 'reveal--visible' : ''}`}
+        >
           <span className="eyebrow">Why Choose Us</span>
           <h2 className="section-title">
             Discover The Advantage Of Working With Us
@@ -38,7 +46,10 @@ function WhyChooseUs() {
         </div>
 
         <div className="why__grid">
-          <div className="why__image">
+          <div
+            ref={imageRef}
+            className={`why__image reveal reveal--scale ${imageVisible ? 'reveal--visible' : ''}`}
+          >
             <img
               src={images.whyChooseUs}
               alt="AtiSunya Infratech advisors reviewing a property plan"
@@ -46,9 +57,12 @@ function WhyChooseUs() {
             />
           </div>
 
-          <div className="why__features">
-            {features.map(({ icon: Icon, title, text }) => (
-              <div className="why-card" key={title}>
+          <div
+            ref={cardsRef}
+            className={`why__features ${cardsVisible ? 'why__features--visible' : ''}`}
+          >
+            {features.map(({ icon: Icon, title, text }, i) => (
+              <div className="why-card" key={title} style={{ '--reveal-i': i }}>
                 <div className="why-card__icon">
                   <Icon size={20} />
                 </div>

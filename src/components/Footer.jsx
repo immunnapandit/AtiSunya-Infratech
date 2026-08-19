@@ -1,69 +1,103 @@
 import { useState } from 'react';
 import Logo from './Logo';
+import { socialLinks, whatsappLink } from '../data/social';
+import { useReveal } from '../hooks/useReveal';
 import './Footer.css';
 
-const quickLinks = ['Home', 'About', 'Services', 'Project', 'Property'];
-const supportLinks = ['Customer Service', 'Help Center', 'Contact', 'Blog', 'Faq'];
-const socialLinks = ['Facebook', 'Instagram', 'X Twitter', 'Linkedin', 'Whatsapp'];
+const quickLinks = [
+  { label: 'Home', href: '#home' },
+  { label: 'About Us', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
+];
+
+const companyLinks = [
+  { label: 'Contact Us', href: '#contact' },
+  { label: 'Chat on WhatsApp', href: whatsappLink, external: true },
+];
 
 function Footer() {
   const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+  const [gridRef, gridVisible] = useReveal({ threshold: 0.05 });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubscribed(true);
+    setEmail('');
   };
 
   return (
     <footer className="footer">
-      <div className="container footer__grid">
+      <div
+        ref={gridRef}
+        className={`container footer__grid reveal ${gridVisible ? 'reveal--visible' : ''}`}
+      >
         <div className="footer__brand">
           <Logo />
           <p className="footer__tagline">Stay updated with our latest news and insights.</p>
-          <form className="footer__subscribe" onSubmit={handleSubmit}>
-            <input
-              type="email"
-              placeholder="Add email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit" className="btn btn-dark footer__subscribe-btn">Subscribe</button>
-          </form>
+
+          {subscribed ? (
+            <p className="footer__subscribe-success" role="status">
+              Thanks — you&rsquo;re on the list.
+            </p>
+          ) : (
+            <form className="footer__subscribe" onSubmit={handleSubmit}>
+              <label htmlFor="footer-email" className="sr-only">Email address</label>
+              <input
+                id="footer-email"
+                type="email"
+                placeholder="Add email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button type="submit" className="btn btn-dark footer__subscribe-btn">Subscribe</button>
+            </form>
+          )}
         </div>
 
         <div className="footer__col">
-          <h4 className="footer__heading">Quick Link</h4>
+          <h3 className="footer__heading">Quick Links</h3>
           <ul>
             {quickLinks.map((l) => (
-              <li key={l}><a href="#home">{l}</a></li>
+              <li key={l.label}><a href={l.href}>{l.label}</a></li>
             ))}
           </ul>
         </div>
 
         <div className="footer__col">
-          <h4 className="footer__heading">Support</h4>
+          <h3 className="footer__heading">Get In Touch</h3>
           <ul>
-            {supportLinks.map((l) => (
-              <li key={l}><a href="#contact">{l}</a></li>
+            {companyLinks.map((l) => (
+              <li key={l.label}>
+                {l.external ? (
+                  <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                ) : (
+                  <a href={l.href}>{l.label}</a>
+                )}
+              </li>
             ))}
           </ul>
         </div>
 
         <div className="footer__col">
-          <h4 className="footer__heading">Follow Us</h4>
+          <h3 className="footer__heading">Follow Us</h3>
           <ul>
-            {socialLinks.map((l) => (
-              <li key={l}><a href="#home">{l}</a></li>
+            {socialLinks.filter((s) => s.href).map((l) => (
+              <li key={l.label}>
+                <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+              </li>
             ))}
           </ul>
         </div>
       </div>
 
       <div className="container footer__bottom">
-        <p>2026 Copyright &copy; AtiSunya Infratech</p>
+        <p>{new Date().getFullYear()} Copyright &copy; AtiSunya Infratech</p>
         <div className="footer__legal">
-          <a href="#home">Privacy Policy</a>
-          <a href="#home">Terms &amp; Services</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
         </div>
       </div>
     </footer>

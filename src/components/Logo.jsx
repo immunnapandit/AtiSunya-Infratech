@@ -1,10 +1,13 @@
+import { cld } from '../lib/cloudinary';
 import './Logo.css';
+
+const logoSrc = cld('atisunya/logo/atisunya-logo', { width: 400 });
 
 function Logo() {
   return (
     <a href="#home" className="logo">
       <img
-        src="/images/Logo/AtiSunyaLogo.png"
+        src={logoSrc}
         alt="AtiSunya Infratech"
         className="logo__image"
       />

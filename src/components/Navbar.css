@@ -56,8 +56,14 @@
   color: var(--color-white);
 }
 
-.navbar__link:hover {
-  color: var(--color-accent);
+/* Split by background: the darker bronze clears AA contrast on the white
+   scrolled bar, the lighter gold clears it over the dark hero image. */
+.navbar--scrolled .navbar__link:hover {
+  color: var(--color-accent-dark);
+}
+
+.navbar:not(.navbar--scrolled) .navbar__link:hover {
+  color: var(--color-accent-light);
 }
 
 .navbar__cta {
@@ -81,17 +87,35 @@
   color: var(--color-white);
 }
 
+.navbar__cta--mobile {
+  display: none;
+}
+
+/* Dims and blocks the page behind the slide-out mobile menu; tapping it
+   closes the menu, same as the X button or Escape. */
+.navbar__scrim {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: rgba(20, 17, 15, 0.4);
+  border: none;
+  padding: 0;
+  cursor: default;
+}
+
 @media (max-width: 960px) {
   .navbar__nav {
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 106;
     height: 100vh;
-    width: 270px;
+    width: min(300px, 82vw);
     background: var(--color-white);
     flex-direction: column;
     align-items: flex-start;
-    padding: 100px var(--space-6);
+    padding: 100px var(--space-6) var(--space-6);
     gap: var(--space-5);
     transform: translateX(100%);
     transition: transform var(--transition);
@@ -104,8 +128,19 @@
     color: var(--color-text) !important;
     font-size: var(--fs-sm);
   }
-  .navbar__cta {
+  /* The slide-out panel is always a white surface, regardless of whether
+     the header behind it is scrolled — so its hover state always needs the
+     dark accent, overriding whichever of the two split rules above matched. */
+  .navbar__nav .navbar__link:hover {
+    color: var(--color-accent-dark) !important;
+  }
+  .navbar__inner > .navbar__cta {
     display: none;
+  }
+  .navbar__cta--mobile {
+    display: inline-flex;
+    width: 100%;
+    margin-top: auto;
   }
   .navbar__toggle {
     display: block;
@@ -113,5 +148,8 @@
   }
   .navbar:not(.navbar--scrolled) .navbar__toggle {
     color: var(--color-white);
+  }
+  .navbar__scrim {
+    display: block;
   }
 }

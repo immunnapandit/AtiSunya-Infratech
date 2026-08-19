@@ -1,11 +1,18 @@
 import { images } from '../data/images';
+import { useReveal } from '../hooks/useReveal';
 import './About.css';
 
 function About() {
+  const [contentRef, contentVisible] = useReveal();
+  const [imagesRef, imagesVisible] = useReveal();
+
   return (
     <section id="about" className="section about">
       <div className="container about__grid">
-        <div className="about__content">
+        <div
+          ref={contentRef}
+          className={`about__content reveal ${contentVisible ? 'reveal--visible' : ''}`}
+        >
           <span className="eyebrow">About Us</span>
 
           <h2 className="section-title about__heading">
@@ -32,10 +39,14 @@ function About() {
             make the property journey simpler, clearer and more
             reliable for homeowners, investors and businesses.
           </p>
-          <a href="#projects" className="btn btn-dark about__cta">More About Us</a>
+          <a href="#projects" className="btn btn-dark about__cta">Explore Our Projects</a>
         </div>
 
-        <div className="about__images-col">
+        <div
+          ref={imagesRef}
+          className={`about__images-col reveal reveal--scale ${imagesVisible ? 'reveal--visible' : ''}`}
+          style={{ '--reveal-i': 1 }}
+        >
           <div className="about__image about__image--large">
             <img src={images.aboutLarge} alt="The AtiSunya Infratech team reviewing a property plan" loading="lazy" />
           </div>

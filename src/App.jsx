@@ -12,14 +12,17 @@ import FloatingButtons from './components/FloatingButtons';
 function App() {
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Services />
-      <WhyChooseUs />
-      <CtaBanner />
-      <ContactForm />
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Projects />
+        <Services />
+        <WhyChooseUs />
+        <CtaBanner />
+        <ContactForm />
+      </main>
       <Footer />
       <FloatingButtons />
     </>

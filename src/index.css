@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+/* Jost + Inter are loaded via <link> in index.html, not @import here —
+   @import blocks CSS parsing until the remote stylesheet is fetched, which
+   delays the browser from discovering it at all until this file is parsed. */
 
 :root {
   /* ---- Brand palette -------------------------------------------------- */
@@ -10,12 +12,21 @@
 
   --color-text: #1E1916;
   --color-text-muted: #6B615A;
-  --color-text-subtle: #8F857C;
+  /* Darkened from the original #8F857C, which read at ~3.4:1 on cream —
+     below the 4.5:1 AA floor for normal-size text. */
+  --color-text-subtle: #776D63;
 
   /* Warm bronze accent — replaces the old blue so every section shares
-     one temperature. Used for prices, arrows, focus rings, small marks. */
+     one temperature. Used for icons, borders, focus rings and large marks,
+     where the applicable WCAG contrast floor is 3:1. */
   --color-accent: #A67C4E;
+  /* Same bronze, darkened to clear 4.5:1 against white/cream — use this
+     instead of --color-accent for small body-size text (labels, links,
+     prices) on a light background. */
   --color-accent-dark: #8C6640;
+  /* Light champagne-gold counterpart for accent text on dark backgrounds
+     (e.g. nav link hover over the hero image) — also clears 4.5:1. */
+  --color-accent-light: #E8C9A0;
   --color-accent-soft: #F0E4D3;
 
   --color-border: #E6DED1;
@@ -119,12 +130,82 @@ h1, h2, h3, h4 {
   border-radius: 2px;
 }
 
+/* Visually hidden but still available to screen readers and keyboard nav. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 1000;
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ---- Scroll reveal ------------------------------------------------------
+   Paired with the useReveal() hook. Content is always present and readable
+   in the DOM — this only animates opacity/transform, which keeps it fully
+   available to screen readers and search engine crawlers regardless of
+   animation state. `prefers-reduced-motion` disables the animation above
+   (transition-duration: 0.01ms) and the hook itself skips straight to the
+   visible state, so nothing ever depends on motion to become visible. */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--reveal-i, 0) * 90ms);
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Modifier: scale in instead of rising — used for images and cards where a
+   vertical rise would look odd against a fixed-aspect frame. */
+.reveal--scale {
+  transform: scale(0.94);
+}
+
+.reveal--scale.reveal--visible {
+  transform: scale(1);
+}
+
+/* Modifier: opacity only, no movement — used for full-bleed background
+   photography where a translate would reveal the frame edge. */
+.reveal--fade {
+  transform: none;
+  transition: opacity 0.9s ease;
+  transition-delay: calc(var(--reveal-i, 0) * 90ms);
 }
 
 /* ---- Layout primitives ------------------------------------------------ */
@@ -234,7 +315,7 @@ h1, h2, h3, h4 {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
   margin-bottom: var(--space-4);
 }
 

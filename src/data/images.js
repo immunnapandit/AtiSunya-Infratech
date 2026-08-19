@@ -1,26 +1,28 @@
 /**
  * Central image registry.
  *
- * Files live in `public/images/`, which is served from the site root — so a
- * file at `public/images/Hero/Hero1.jpg` is referenced as
- * `/images/Hero/Hero1.jpg` (no `public` in the path).
- *
- * Filenames containing spaces must be percent-encoded (` ` becomes `%20`).
+ * All images are served through Cloudinary (see `src/lib/cloudinary.js`) so
+ * every visitor gets an auto-optimized format/size instead of one large file
+ * for everyone. To replace a photo: upload the new file to the AtiSunya
+ * Cloudinary account under the same public ID (or a new one) and update the
+ * id below — no code changes needed beyond that.
  */
 
+import { cld } from '../lib/cloudinary';
+
 export const images = {
-  // About section — supplied photography.
-  aboutLarge: '/images/About/About1.jpg',
-  aboutSmall: '/images/About/About2.jpg',
+  // About section.
+  aboutLarge: cld('atisunya/about/about1', { width: 900 }),
+  aboutSmall: cld('atisunya/about/about2', { width: 700 }),
 
   // "Start Your Journey" call-to-action banner.
-  ctaBanner: '/images/Projects/StartYourJourney.png',
+  ctaBanner: cld('atisunya/projects/start-your-journey', { width: 1920 }),
 
   // "Why Choose Us" section.
-  whyChooseUs: '/images/WhyChooseUs/whychooseus.jpg',
+  whyChooseUs: cld('atisunya/why-choose-us/whychooseus', { width: 900, height: 1200, gravity: 'auto' }),
 
-  // --- Still a placeholder: replace when the real photo is ready ---------
-  contact: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&h=1400&fit=crop&q=80',
+  // Contact section.
+  contact: cld('atisunya/contact/contact', { width: 1200, height: 1400, gravity: 'auto' }),
 };
 
 /**
@@ -29,19 +31,19 @@ export const images = {
  */
 export const heroSlides = [
   {
-    image: '/images/Hero/Hero1.jpg',
+    image: cld('atisunya/hero/hero1', { width: 1920 }),
     alt: 'High-rise residential towers overlooking a green city district',
   },
   {
-    image: '/images/Hero/Hero2.jpg',
+    image: cld('atisunya/hero/hero2', { width: 1920 }),
     alt: 'City skyline of residential towers under construction at sunrise',
   },
 ];
 
-/** Client avatars shown in the hero trust badge — square, 100x100. */
+/** Client avatars shown in the hero trust badge — square, cropped to faces. */
 export const clientAvatars = [
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces',
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces',
-  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces',
+  cld('atisunya/avatars/avatar1', { width: 100, height: 100, gravity: 'faces' }),
+  cld('atisunya/avatars/avatar2', { width: 100, height: 100, gravity: 'faces' }),
+  cld('atisunya/avatars/avatar3', { width: 100, height: 100, gravity: 'faces' }),
+  cld('atisunya/avatars/avatar4', { width: 100, height: 100, gravity: 'faces' }),
 ];

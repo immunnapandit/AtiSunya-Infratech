@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { heroSlides, clientAvatars } from '../data/images';
+import { useReveal } from '../hooks/useReveal';
 import './Hero.css';
 
 const SLIDE_DURATION = 6000;
@@ -15,6 +16,8 @@ function Hero() {
   const [paused, setPaused] = useState(false);
   const slideCount = heroSlides.length;
   const timerRef = useRef(null);
+  const [introRef, introVisible] = useReveal();
+  const [barRef, barVisible] = useReveal();
 
   useEffect(() => {
     if (slideCount < 2 || paused) return undefined;
@@ -55,8 +58,11 @@ function Hero() {
       </div>
 
       <div className="container hero__content">
-        <div className="hero__intro">
-          <span className="eyebrow eyebrow-light">AtiSunya Infratech</span>
+        <div
+          ref={introRef}
+          className={`hero__intro reveal ${introVisible ? 'reveal--visible' : ''}`}
+        >
+          <span className="eyebrow eyebrow-light">Real Estate Consultants in Noida &amp; Greater Noida</span>
           <h1 className="hero__title">
             Discover Your Perfect
             <br />
@@ -64,8 +70,8 @@ function Hero() {
           </h1>
           <p className="hero__text">
             From premium apartments to plotted developments, we help you
-            buy, sell and rent property across India with trusted guidance
-            at every step.
+            buy, sell and rent property across Noida, Greater Noida and
+            Ghaziabad, with trusted guidance at every step.
           </p>
 
           <div className="hero__actions">
@@ -74,7 +80,11 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hero__bar">
+        <div
+          ref={barRef}
+          className={`hero__bar reveal ${barVisible ? 'reveal--visible' : ''}`}
+          style={{ '--reveal-i': 2 }}
+        >
           <dl className="hero__stats">
             {stats.map(({ value, label }) => (
               <div className="hero__stat" key={label}>
@@ -87,7 +97,7 @@ function Hero() {
           <div className="hero__trust">
             <div className="hero__avatars">
               {clientAvatars.map((src) => (
-                <img key={src} src={src} alt="" />
+                <img key={src} src={src} alt="" width={44} height={44} />
               ))}
             </div>
             <p>

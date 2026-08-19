@@ -12,8 +12,10 @@
  *   config    — unit configurations, e.g. '2BHK - 5BHK'            (optional)
  *   price     — starting price WITHOUT the rupee symbol, '1.06 Cr' (optional)
  *   status    — 'Ready to Move' | 'Under Construction' | 'New Launch' (optional)
- *   image     — path under `public/`, e.g. '/images/Projects/foo.jpg'
- *               (4:3 landscape reads best; encode spaces as %20)
+ *   image     — a Cloudinary delivery URL, built with `cld()` from a public ID
+ *               (see src/lib/cloudinary.js). Upload new photography to the
+ *               `atisunya/projects/<slug>` path in Cloudinary and reference
+ *               that public ID here.
  *
  * Optional fields are omitted from the card when absent, so it is safe to
  * leave them out until the real figures are confirmed.
@@ -23,49 +25,56 @@
  * Send the details + photos and this file gets updated in one pass.
  */
 
+import { cld } from '../lib/cloudinary';
+
+const cardImage = (publicId) => cld(publicId, { width: 800, height: 600 });
+
 export const projects = [
   {
     name: 'Gulshan Empire',
     developer: 'Gulshan Group',
     location: 'Noida',
     status: 'New Launch',
-    image: '/images/Projects/Gulshan%20Empire.png',
+    image: cardImage('atisunya/projects/gulshan-empire'),
   },
+
+  // --- Placeholder listings ------------------------------------------------
+  // Replace these with real projects and photography before launch.
   {
     name: 'Vrinda Heritage Skyward',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/vrinda-heritage-skyward'),
   },
   {
     name: 'Nirala Aspire Low Rise',
     developer: 'Nirala Group',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/nirala-aspire-low-rise'),
   },
   {
     name: 'Capital Athena',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/capital-athena'),
   },
   {
     name: 'Panchsheel Greens',
     developer: 'Panchsheel Group',
-    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/panchsheel-greens'),
   },
   {
     name: 'Nirala Estate',
     developer: 'Nirala Group',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/nirala-estate'),
   },
   {
     name: 'Nirala Trio',
     developer: 'Nirala Group',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/nirala-trio'),
   },
   {
     name: 'Ace Divino',
     developer: 'ACE Group',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/ace-divino'),
   },
   {
     name: 'Express Astra',
-    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop&q=80',
+    image: cardImage('atisunya/projects/express-astra'),
   },
 ];

@@ -1,7 +1,11 @@
 import { images } from '../data/images';
+import { useReveal } from '../hooks/useReveal';
 import './CtaBanner.css';
 
 function CtaBanner() {
+  const [leftRef, leftVisible] = useReveal();
+  const [rightRef, rightVisible] = useReveal();
+
   return (
     <section className="cta-banner">
       <div className="cta-banner__bg">
@@ -10,7 +14,10 @@ function CtaBanner() {
       </div>
 
       <div className="container cta-banner__content">
-        <div className="cta-banner__left">
+        <div
+          ref={leftRef}
+          className={`cta-banner__left reveal ${leftVisible ? 'reveal--visible' : ''}`}
+        >
           <span className="eyebrow eyebrow-light">AtiSunya Infratech</span>
           <h2 className="section-title cta-banner__title">
             Start Your Journey To
@@ -19,7 +26,11 @@ function CtaBanner() {
           </h2>
         </div>
 
-        <div className="cta-banner__right">
+        <div
+          ref={rightRef}
+          className={`cta-banner__right reveal ${rightVisible ? 'reveal--visible' : ''}`}
+          style={{ '--reveal-i': 1 }}
+        >
           <p className="cta-banner__text">
             Talk to an AtiSunya Infratech advisor today and take the
             first step toward a property that fits your life and budget.

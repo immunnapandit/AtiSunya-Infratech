@@ -1,10 +1,14 @@
 import { useRef } from 'react';
 import { FiChevronLeft, FiChevronRight, FiMapPin } from 'react-icons/fi';
 import { projects } from '../data/projects';
+import { useReveal } from '../hooks/useReveal';
+import { mergeRefs } from '../hooks/mergeRefs';
 import './Projects.css';
 
 function Projects() {
   const trackRef = useRef(null);
+  const [headerRef, headerVisible] = useReveal();
+  const [trackRevealRef, trackVisible] = useReveal({ threshold: 0.05 });
 
   const scroll = (dir) => {
     if (!trackRef.current) return;
@@ -15,11 +19,16 @@ function Projects() {
   return (
     <section id="projects" className="section projects">
       <div className="container">
-        <div className="section-header projects__header">
+        <div
+          ref={headerRef}
+          className={`section-header projects__header reveal ${headerVisible ? 'reveal--visible' : ''}`}
+        >
           <div>
             <span className="eyebrow">Our Projects</span>
             <h2 className="section-title">Featured Developments</h2>
-            <p className="section-subtitle">Bridging you to your ideal property</p>
+            <p className="section-subtitle">
+              Residential projects across Noida, Greater Noida and Ghaziabad
+            </p>
           </div>
 
           <div className="projects__nav">
@@ -32,11 +41,22 @@ function Projects() {
           </div>
         </div>
 
-        <div className="projects__track" ref={trackRef}>
-          {projects.map((p) => (
-            <article className="project-card" key={p.name}>
+        <div
+          className={`projects__track ${trackVisible ? 'projects__track--visible' : ''}`}
+          ref={mergeRefs(trackRef, trackRevealRef)}
+        >
+          {projects.map((p, i) => (
+            <article
+              className={`project-card ${trackVisible ? 'project-card--visible' : ''}`}
+              key={p.name}
+              style={{ '--reveal-i': Math.min(i, 4) }}
+            >
               <div className="project-card__image">
-                <img src={p.image} alt={p.name} loading="lazy" />
+                <img
+                  src={p.image}
+                  alt={`${p.name}${p.location ? ` — ${p.location}` : ''}${p.developer ? `, by ${p.developer}` : ''}`}
+                  loading="lazy"
+                />
                 {p.status && <span className="project-card__status">{p.status}</span>}
               </div>
 
@@ -88,7 +108,11 @@ function Projects() {
                       </strong>
                     </p>
                   )}
-                  <a href="#contact" className="btn btn-dark project-card__btn">
+                  <a
+                    href="#contact"
+                    className="btn btn-dark project-card__btn"
+                    aria-label={`Enquire about ${p.name}`}
+                  >
                     Enquire
                   </a>
                 </div>

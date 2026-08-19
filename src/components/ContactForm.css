@@ -119,6 +119,27 @@
   font-weight: 600;
 }
 
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-4) 0;
+}
+
+.contact__success svg {
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.contact__success .contact__title {
+  margin-bottom: var(--space-2);
+}
+
+.contact__success .contact__subtitle {
+  margin-bottom: var(--space-6);
+}
+
 @media (max-width: 960px) {
   .contact__image {
     display: none;

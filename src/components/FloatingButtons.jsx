@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { FiChevronUp } from 'react-icons/fi';
+import { whatsappLink } from '../data/social';
 import './FloatingButtons.css';
 
 function FloatingButtons() {
@@ -16,9 +17,9 @@ function FloatingButtons() {
     <>
       <a
         className="floating-btn floating-btn--whatsapp"
-        href="https://wa.me/910000000000"
+        href={whatsappLink}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
       >
         <FaWhatsapp size={26} />

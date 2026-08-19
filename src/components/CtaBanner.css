@@ -18,6 +18,17 @@
   object-fit: cover;
   /* Keeps the terrace and horizon in frame when the wide source is cropped */
   object-position: center 42%;
+  /* Same slow drift used in the hero — keeps a static banner feeling alive. */
+  animation: cta-banner-pan 16s ease-in-out infinite alternate;
+}
+
+@keyframes cta-banner-pan {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-banner__bg img { animation: none; }
 }
 
 .cta-banner__overlay {

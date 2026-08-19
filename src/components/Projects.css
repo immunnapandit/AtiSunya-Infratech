@@ -57,8 +57,25 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: box-shadow var(--transition), transform var(--transition),
-    border-color var(--transition);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: box-shadow var(--transition), border-color var(--transition),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--reveal-i, 0) * 90ms);
+}
+
+.project-card--visible {
+  opacity: 1;
+  transform: none;
+}
+
+.project-card--visible:hover {
+  /* Swap back to the quick, non-staggered timing for the hover interaction
+     — the slower cubic-bezier + delay above is only for the one-time
+     entrance, and shouldn't make the hover-lift feel sluggish. */
+  transition: box-shadow var(--transition), border-color var(--transition),
+    transform var(--transition);
 }
 
 .project-card:hover {
@@ -121,7 +138,7 @@
 
 .project-card__developer {
   font-size: 0.78rem;
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
   font-weight: 500;
   margin-bottom: 4px;
   min-height: 1.2em;
@@ -144,7 +161,7 @@
   letter-spacing: 0;
   text-transform: none;
   white-space: nowrap;
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 }
 
 .project-card__location svg {
@@ -203,7 +220,7 @@
   font-weight: 500;
   letter-spacing: 0;
   text-transform: none;
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
   margin-top: 2px;
 }
 

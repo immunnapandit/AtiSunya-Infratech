@@ -18,6 +18,19 @@
   padding: var(--card-padding);
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow var(--transition);
+  transition-delay: calc(var(--reveal-i, 0) * 90ms);
+}
+
+.services__grid--visible .service-card {
+  opacity: 1;
+  transform: none;
+}
+
+.services__grid--visible .service-card:hover {
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
@@ -74,8 +87,8 @@
 }
 
 .service-card__link:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
 }
 
 .service-card__link:hover svg {

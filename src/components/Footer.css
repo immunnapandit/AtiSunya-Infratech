@@ -53,6 +53,16 @@
   font-size: var(--fs-xs);
 }
 
+.footer__subscribe-success {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--color-accent-dark);
+  padding: 12px 0;
+}
+
 .footer__heading {
   font-size: 1.1rem;
   font-weight: 500;
@@ -73,7 +83,7 @@
 }
 
 .footer__col a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 }
 
 .footer__bottom {
@@ -100,7 +110,7 @@
 }
 
 .footer__legal a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-dark);
 }
 
 @media (max-width: 900px) {
