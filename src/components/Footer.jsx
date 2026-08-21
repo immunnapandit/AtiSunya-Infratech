@@ -5,14 +5,14 @@ import { useReveal } from '../hooks/useReveal';
 import './Footer.css';
 
 const quickLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Projects', href: '/#projects' },
 ];
 
 const companyLinks = [
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Contact Us', href: '/#contact' },
   { label: 'Chat on WhatsApp', href: whatsappLink, external: true },
 ];
 
@@ -96,8 +96,11 @@ function Footer() {
       <div className="container footer__bottom">
         <p>{new Date().getFullYear()} Copyright &copy; AtiSunya Infratech</p>
         <div className="footer__legal">
-          <a href="/privacy-policy.html">Privacy Policy</a>
-          <a href="/terms-of-service.html">Terms of Service</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+          <a href="/refund-and-cancellation-policy">Refund Policy</a>
+          <a href="/disclaimer">Disclaimer</a>
+          <a href="/cookie-policy">Cookie Policy</a>
         </div>
       </div>
     </footer>

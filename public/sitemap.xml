@@ -6,12 +6,27 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.atisunyainfratech.com/privacy-policy.html</loc>
+    <loc>https://www.atisunyainfratech.com/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
-    <loc>https://www.atisunyainfratech.com/terms-of-service.html</loc>
+    <loc>https://www.atisunyainfratech.com/terms-and-conditions</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://www.atisunyainfratech.com/refund-and-cancellation-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://www.atisunyainfratech.com/disclaimer</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://www.atisunyainfratech.com/cookie-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>

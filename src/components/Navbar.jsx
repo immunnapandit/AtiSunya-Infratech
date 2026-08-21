@@ -11,14 +11,17 @@ const navLinks = [
 ];
 
 function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const isHomePage = window.location.pathname === '/';
+  const linkPrefix = isHomePage ? '' : '/';
+  const [scrolled, setScrolled] = useState(!isHomePage);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(!isHomePage || window.scrollY > 40);
+    onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [isHomePage]);
 
   // Close the mobile menu on Escape, and stop the page scrolling behind it
   // while it's open.
@@ -50,18 +53,18 @@ function Navbar() {
         >
           {navLinks.map((link) => (
             <div key={link.label} className="navbar__item">
-              <a href={link.href} className="navbar__link" onClick={closeMobileMenu}>
+              <a href={`${linkPrefix}${link.href}`} className="navbar__link" onClick={closeMobileMenu}>
                 {link.label.toUpperCase()}
               </a>
             </div>
           ))}
 
-          <a href="#contact" className="btn btn-dark navbar__cta navbar__cta--mobile" onClick={closeMobileMenu}>
+          <a href={`${linkPrefix}#contact`} className="btn btn-dark navbar__cta navbar__cta--mobile" onClick={closeMobileMenu}>
             Get In Touch
           </a>
         </nav>
 
-        <a href="#contact" className="btn btn-cream navbar__cta">
+        <a href={`${linkPrefix}#contact`} className="btn btn-cream navbar__cta">
           Get In Touch
         </a>
 

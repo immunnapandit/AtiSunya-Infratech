@@ -5,7 +5,7 @@ const logoSrc = cld('atisunya/logo/atisunya-logo', { width: 400 });
 
 function Logo() {
   return (
-    <a href="#home" className="logo">
+    <a href="/" className="logo">
       <img
         src={logoSrc}
         alt="AtiSunya Infratech"

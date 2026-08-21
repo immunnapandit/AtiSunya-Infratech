@@ -101,6 +101,7 @@
 
 .footer__legal {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-6);
 }
 

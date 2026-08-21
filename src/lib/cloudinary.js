@@ -1,16 +1,3 @@
-/**
- * Cloudinary delivery URL builder.
- *
- * Only the cloud name is needed to build a delivery URL — it's a public
- * identifier, safe to ship in the frontend. The API key/secret are used only
- * once, out-of-band, to upload assets to the account; they must never appear
- * in this codebase.
- *
- * Every URL requests `f_auto,q_auto`, which lets Cloudinary pick the best
- * format for the visitor's browser (AVIF/WebP where supported, falling back
- * to JPEG) and the best quality/size trade-off automatically — this is what
- * makes images load fast without any per-image manual compression work.
- */
 
 const CLOUD_NAME = 'dkrjlekne';
 
