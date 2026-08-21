@@ -1,7 +1,6 @@
-import { cld } from '../lib/cloudinary';
 import './Logo.css';
 
-const logoSrc = cld('atisunya/logo/atisunya-logo', { width: 400 });
+const logoSrc = '/images/Logo/AtiSunyaInfratechLogo.png';
 
 function Logo() {
   return (
